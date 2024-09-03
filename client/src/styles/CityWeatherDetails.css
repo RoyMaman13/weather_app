@@ -1,0 +1,56 @@
+.weather-details {
+    background-color:#27737D;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50px; /* Round corners */
+    color: white;
+  }
+  
+  .weather-details h2,
+  .weather-details h3 {
+    margin: 5px 0;
+  }
+  
+  .temperature-condition {
+    margin: 20px 0;
+  }
+  
+  .temperature-condition h1 {
+    font-size: 3em;
+    margin: 0;
+  }
+  
+  .temperature-condition h2 {
+    font-size: 1.5em;
+    margin: 10px 0 0 0;
+  }
+
+  .temp {
+    font-size: 1.5em; /* Increase font size */
+    line-height: 1; /* Increase line height for taller appearance */
+    font-weight: 300; /* Lighten the font */
+    text-align: center; /* Center align the text */
+  }
+  
+  .additional-info {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Align categories in one line */
+  }
+  
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ensures the row takes full width */
+  }
+
+  .category {
+    text-align: center; /* Center align the text */
+  }
+  
+  .value {
+    margin-left: 10px;
+    display: block; /* Display value in a new line */
+    margin-top: 5px; /* Space between category and value */
+    font-weight:bold;
+  }
