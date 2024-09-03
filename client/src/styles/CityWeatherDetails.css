@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+
 .weather-details {
     background-color:#27737D;
     text-align: center;
     padding: 20px;
     border-radius: 50px; /* Round corners */
     color: white;
+    width: 300px;
   }
   
   .weather-details h2,

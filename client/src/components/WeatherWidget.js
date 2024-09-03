@@ -4,6 +4,15 @@ import { ReactComponent as MySVG } from '../assets/fintek_logo.svg';
 import fetchWeatherData from '../api/weatherApi';
 import CityWeatherDetails from './CityWeatherDetails';
 
+const formatDateTime = (dateTimeString) => {
+  const date = new Date(dateTimeString.replace(' ', 'T')); // Convert to ISO format
+
+  const formattedDate = date.toLocaleDateString('en-GB'); // Format date as DD/MM/YYYY
+  const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format time as HH:MM
+
+  return `${formattedDate.replace(/\//g, '/')} at ${formattedTime}`;
+};
+
 const WeatherWidget = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
@@ -15,15 +24,20 @@ const WeatherWidget = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    
+    setError('');   
 
     const data = await fetchWeatherData(city);
     if (data) {
       setWeatherData(data);
+      setCity('')
     } else {
       setWeatherData(null);
-      setError('Failed to fetch weather data. Please try again.'); // Update error state
+      if(city){
+        setError(`Failed to find weather data for ${city}. Please try again.`); // Update error state
+      }
+      else {
+        setError('Please fill in the location')
+      }
       setWeatherData(null); // Clear previous weather data if there's an error
     }
   };
@@ -53,13 +67,17 @@ const WeatherWidget = () => {
               Check
             </button>
           </div>
-        </div>
-        </div>
-        
-          {weatherData ? (<div className="right-pane">
-            <CityWeatherDetails weatherData={weatherData} />
+          {weatherData ? (<div className='latidude' >
+                latitude: {weatherData.location.lat} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; longitude: {weatherData.location.lon}<br/>
+                accurate to: {formatDateTime(weatherData.location.localtime)}
             </div>
-          ) : (<div className="right-pane-empty"></div>
+          ) :(<p/>)}
+        </div>        
+        </div>      
+          {weatherData ? (<div className="right-pane">
+            <CityWeatherDetails weatherData={weatherData} formatDateTime={formatDateTime}/>
+            </div>
+          ) : (<div className="right-pane-empty">{error}</div>
           )}
         
       </div>

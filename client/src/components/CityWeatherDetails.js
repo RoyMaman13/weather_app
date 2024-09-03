@@ -1,16 +1,7 @@
 import React from 'react';
 import '../styles/CityWeatherDetails.css'; // Make sure to update the CSS file accordingly
 
-const formatDateTime = (dateTimeString) => {
-    const date = new Date(dateTimeString.replace(' ', 'T')); // Convert to ISO format
-  
-    const formattedDate = date.toLocaleDateString('en-GB'); // Format date as DD/MM/YYYY
-    const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format time as HH:MM
-  
-    return `${formattedDate.replace(/\//g, '/')} at ${formattedTime}`;
-  };
-
-const CityWeatherDetails = ({ weatherData }) => {
+const CityWeatherDetails = ({ weatherData, formatDateTime }) => {
   if (!weatherData) {
     return <p>No weather data available</p>;
   }
