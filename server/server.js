@@ -1,17 +1,19 @@
 const express = require('express');
-const dotenv = require('dotenv');
-
-dotenv.config();
+const cors = require('cors'); // Import the cors package
+const config = require('./src/config/config'); // Adjust the path as needed
+const weatherRoutes = require('./src/routes/weatherRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.use(express.json());
+// Use CORS middleware before routes
+app.use(cors()); // Enable all CORS requests
 
-app.get('/', (req, res) => {
-    res.send('Server is running!');
-});
+// Use the weather routes
+app.use('/api', weatherRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Start the server
+const port = config.port; // Assuming config.port is set to 5001
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
