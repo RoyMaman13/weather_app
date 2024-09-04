@@ -32,7 +32,6 @@ const WeatherWidget = () => {
       const historyData = await fetchHistoryWeatherData(city, data.location.localtime)
       setWeatherData(data);
       setweatherHoursData(historyData)
-      console.log(weatherHoursData)
       setCity('')
     } else {
       setWeatherData(null);

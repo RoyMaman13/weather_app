@@ -9,6 +9,11 @@ function extractTime(datetimeString) {
   return datetimeString.split(' ')[1] || null;
 }
 
+const roundToHour = (localtime) => {
+  const [hour] = localtime.split(':');
+  return `${hour}:00`;
+};
+
 const CityWeatherDetails = ({ weatherData, formatDateTime, weatherHoursData }) => {
   if (!weatherData) {
     return <p>No weather data available</p>;
@@ -22,7 +27,7 @@ const CityWeatherDetails = ({ weatherData, formatDateTime, weatherHoursData }) =
     <div className="weather-details">
       <h2>{name}</h2>
       <h3>{country}</h3>
-      <p>{localtime}</p>
+      <p>{roundToHour(localtime)}</p>
       <div className="temperature-condition">
         <h1 className="temp">{temp_c}°C</h1>
         <h2>{condition.text}</h2>
