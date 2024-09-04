@@ -111,6 +111,7 @@
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
+  margin-top: 1%;
    /* Full viewport height */
 }
 

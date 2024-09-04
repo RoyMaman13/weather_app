@@ -1,7 +1,15 @@
 import React from 'react';
 import '../styles/CityWeatherDetails.css'; // Make sure to update the CSS file accordingly
 
-const CityWeatherDetails = ({ weatherData, formatDateTime }) => {
+function extractTime(datetimeString) {
+  if (!datetimeString || typeof datetimeString !== 'string') {
+    console.error('Invalid datetime string:', datetimeString);
+    return null; // Handle the error
+  }
+  return datetimeString.split(' ')[1] || null;
+}
+
+const CityWeatherDetails = ({ weatherData, formatDateTime, weatherHoursData }) => {
   if (!weatherData) {
     return <p>No weather data available</p>;
   }
@@ -37,29 +45,14 @@ const CityWeatherDetails = ({ weatherData, formatDateTime }) => {
   </div>
 </div>
 <div className="additional-info">
-    <div className="info-row">
-        <div className="category">
-            <span>16:00</span>
-            <span className="value">12°</span>
-        </div>
-        <div className="category">
-            <span>17:00</span>
-            <span className="value">15°</span>
-        </div>
-        <div className="category">
-            <span>18:00</span>
-            <span className="value">14°</span>
-        </div>
-        <div className="category">
-            <span>19:00</span>
-            <span className="value">12°</span>
-        </div>
-        <div className="category">
-            <span>20:00</span>
-            <span className="value">11°</span>
-        </div>
-    </div>
-
+  <div className="info-row">
+    {weatherHoursData.slice(0, 5).map((hourData, index) => (
+      <div className="category" key={index}>
+        <span>{extractTime(hourData.time)}</span>
+        <span className="value">{hourData.temp_c}°</span>
+      </div>
+    ))}
+  </div>
 </div>
 </div>
 

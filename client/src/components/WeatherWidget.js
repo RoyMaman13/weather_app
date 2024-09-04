@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/WeatherWidget.css'; // Import the CSS file for styling
 import { ReactComponent as MySVG } from '../assets/fintek_logo.svg';
-import fetchWeatherData from '../api/weatherApi';
+import {fetchWeatherData, fetchHistoryWeatherData}  from '../api/weatherApi';
 import CityWeatherDetails from './CityWeatherDetails';
 
 const formatDateTime = (dateTimeString) => {
@@ -16,6 +16,7 @@ const formatDateTime = (dateTimeString) => {
 const WeatherWidget = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  const [weatherHoursData, setweatherHoursData] = useState(null);
   const [error, setError] = useState('');
 
   const handleCityChange = (event) => {
@@ -28,7 +29,10 @@ const WeatherWidget = () => {
 
     const data = await fetchWeatherData(city);
     if (data) {
+      const historyData = await fetchHistoryWeatherData(city, data.location.localtime)
       setWeatherData(data);
+      setweatherHoursData(historyData)
+      console.log(weatherHoursData)
       setCity('')
     } else {
       setWeatherData(null);
@@ -55,6 +59,7 @@ const WeatherWidget = () => {
             City Name
           </label>
           <div className="input-container">
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               id="city-input"
@@ -63,9 +68,10 @@ const WeatherWidget = () => {
               onChange={handleCityChange}
               className="text-input"
             />
-            <button onClick={handleSubmit} className="input-button">
+            <button type="submit" className="input-button">
               Check
             </button>
+            </form>
           </div>
           {weatherData ? (<div className='latidude' >
                 latitude: {weatherData.location.lat} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; longitude: {weatherData.location.lon}<br/>
@@ -75,7 +81,7 @@ const WeatherWidget = () => {
         </div>        
         </div>      
           {weatherData ? (<div className="right-pane">
-            <CityWeatherDetails weatherData={weatherData} formatDateTime={formatDateTime}/>
+            <CityWeatherDetails weatherData={weatherData} weatherHoursData={weatherHoursData} formatDateTime={formatDateTime}/>
             </div>
           ) : (<div className="right-pane-empty">{error}</div>
           )}
