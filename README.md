@@ -13,6 +13,7 @@ First, clone the repository using the following command:
 ```bash
 git clone https://github.com/RoyMaman13/weather_app.git
 cd weather_app
+```bash
 
 Install Dependencies
 To ensure the React frontend works properly, navigate to the client directory and install the necessary dependencies:
