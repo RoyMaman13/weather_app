@@ -1,13 +1,13 @@
-## Weather Web Application
-
+# Weather Web Application
 
 This project is a weather web application that includes both client and server repositories.
 
-# Getting Started
+### Getting Started
 To run this project, follow these steps:
 
-# Clone the Repository:
+### Clone the Repository:
 git clone [your-repo-url]
+
 cd [your-project-directory]
 
 # Run the Application: 
