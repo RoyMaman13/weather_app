@@ -1,22 +1,5 @@
 const weatherService = require('../services/weatherService');
 
-function extractDate(datetimeString) {
-  if (!datetimeString || typeof datetimeString !== 'string') {
-    console.error('Invalid datetime string:', datetimeString);
-    return null;
-  }
-  // Split the string by space and take the first part (date)
-  return datetimeString.split(' ')[0];
-}
-
-function extractTime(datetimeString) {
-  if (!datetimeString || typeof datetimeString !== 'string') {
-    console.error('Invalid datetime string:', datetimeString);
-    return null; // Handle the error
-  }
-  return datetimeString.split(' ')[1] || null;
-}
-
 const getWeather = async (req, res) => {
   const { city } = req.query;
   try {
@@ -27,35 +10,47 @@ const getWeather = async (req, res) => {
   }
 };
 
-const getRelevantHours = (data, givenHour) => {
-  const givenHourNumber = parseInt(givenHour.split(':')[0], 10);
-  const filteredData = data.filter(item => {
-    const hourNumber = parseInt(item.time.split(' ')[1].split(':')[0], 10);
-    return hourNumber >= givenHourNumber - 3 && hourNumber <= givenHourNumber + 1;
-  });
+function getNextFiveElements(combinedHourlyData, targetTime) {
+  // Find the index where the time matches
+  const startIndex = combinedHourlyData.findIndex(item => item.time === targetTime);
+  // If the time is found, return the next 5 elements starting from the matching index
+  if (startIndex !== -1) {
+      return combinedHourlyData.slice(startIndex+1, startIndex + 6);
+  } else {
+      return []; // Return an empty array if the time is not found
+  }
+}
 
-  return filteredData;
-};
+function roundToHour(dateTime) {
+  const [date, time] = dateTime.split(" ");
+  const [hours, minutes] = time.split(":");
+  // Return the date with the hour and "00" minutes
+  return `${date} ${hours}:00`;
+}
 
-const getHistoryWeather = async (req, res) => {
+const getforecastWeather = async (req, res) => {
   const { city, localtime } = req.query;
-  const date = extractDate(localtime)
-  const time1 = extractTime(localtime)
 
   try {
-    const weatherData = await weatherService.fetchHistoryWeather(city, date);
-    const AllHours = weatherData.forecast.forecastday[0].hour.map(hour => ({
-      time: hour.time,   // Get the time
-      temp_c: hour.temp_c // Get the temperature in Celsius
-    }));
-    const relevantHours = getRelevantHours(AllHours, time1);
-    res.json(relevantHours)
+    const weatherData = await weatherService.fetchforecastWeather(city);
+    //get today and tomorow forecast
+    const hourlyToday = weatherData.forecast.forecastday[0].hour;
+    const hourlyTomorowDay = weatherData.forecast.forecastday[1].hour;
+    const combinedHourlyData = hourlyToday.concat(hourlyTomorowDay);
+    //exclude to the relevent hours
+    const fiveElementsData = getNextFiveElements(combinedHourlyData, roundToHour(localtime))
+    //shrink to the needed data only
+    const timeAndTemp = fiveElementsData.map(item => ({
+      time: item.time,
+      temp_c: item.temp_c
+  }));
+    res.json(timeAndTemp)
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching History weather data', error: error.message });
+    res.status(500).json({ message: 'Error fetching forecast weather data', error: error.message });
   }
 };
 
 module.exports = {
   getWeather,
-  getHistoryWeather
+  getforecastWeather
 };

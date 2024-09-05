@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/CityWeatherDetails.css'; // Make sure to update the CSS file accordingly
+import '../styles/CityWeatherDetails.css'; 
 
 function extractTime(datetimeString) {
   if (!datetimeString || typeof datetimeString !== 'string') {
     console.error('Invalid datetime string:', datetimeString);
-    return null; // Handle the error
+    return null;
   }
   return datetimeString.split(' ')[1] || null;
 }
@@ -14,7 +14,7 @@ const roundToHour = (localtime) => {
   return `${hour}:00`;
 };
 
-const CityWeatherDetails = ({ weatherData, formatDateTime, weatherHoursData }) => {
+const CityWeatherDetails = ({ weatherData, formatDateTime, forecastData }) => {
   if (!weatherData) {
     return <p>No weather data available</p>;
   }
@@ -51,7 +51,7 @@ const CityWeatherDetails = ({ weatherData, formatDateTime, weatherHoursData }) =
 </div>
 <div className="additional-info">
   <div className="info-row">
-    {weatherHoursData.slice(0, 5).map((hourData, index) => (
+    {forecastData.slice(0, 5).map((hourData, index) => (
       <div className="category" key={index}>
         <span>{extractTime(hourData.time)}</span>
         <span className="value">{hourData.temp_c}°</span>

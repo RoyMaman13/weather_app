@@ -6,12 +6,12 @@ const fetchWeather = async (city) => {
   return response.data;
 };
 
-const fetchHistoryWeather = async (city, date) => {
-  const response = await axios.get(`${config.weatherApiUrl}history.json?key=${config.weatherApiKey}&q=${city}&dt=${date}`);
+const fetchforecastWeather = async (city) => {
+  const response = await axios.get(`${config.weatherApiUrl}forecast.json?key=${config.weatherApiKey}&q=${city}&days=2&aqi=no&alerts=no`);
   return response.data;
 };
 
 module.exports = {
   fetchWeather,
-  fetchHistoryWeather
+  fetchforecastWeather
 };

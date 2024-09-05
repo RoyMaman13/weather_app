@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/WeatherWidget.css'; // Import the CSS file for styling
 import { ReactComponent as MySVG } from '../assets/fintek_logo.svg';
-import {fetchWeatherData, fetchHistoryWeatherData}  from '../api/weatherApi';
+import {fetchWeatherData, fetchforecastData}  from '../api/weatherApi';
 import CityWeatherDetails from './CityWeatherDetails';
 
 const formatDateTime = (dateTimeString) => {
@@ -16,7 +16,7 @@ const formatDateTime = (dateTimeString) => {
 const WeatherWidget = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
-  const [weatherHoursData, setweatherHoursData] = useState(null);
+  const [forecastData, setforecastData] = useState(null);
   const [error, setError] = useState('');
 
   const handleCityChange = (event) => {
@@ -29,9 +29,9 @@ const WeatherWidget = () => {
 
     const data = await fetchWeatherData(city);
     if (data) {
-      const historyData = await fetchHistoryWeatherData(city, data.location.localtime)
+      const forecastData = await fetchforecastData(city, data.location.localtime)
       setWeatherData(data);
-      setweatherHoursData(historyData)
+      setforecastData(forecastData)
       setCity('')
     } else {
       setWeatherData(null);
@@ -80,7 +80,7 @@ const WeatherWidget = () => {
         </div>        
         </div>      
           {weatherData ? (<div className="right-pane">
-            <CityWeatherDetails weatherData={weatherData} weatherHoursData={weatherHoursData} formatDateTime={formatDateTime}/>
+            <CityWeatherDetails weatherData={weatherData} forecastData={forecastData} formatDateTime={formatDateTime}/>
             </div>
           ) : (<div className="right-pane-empty">{error}</div>
           )}
