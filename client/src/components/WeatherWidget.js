@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import '../styles/WeatherWidget.css'; // Import the CSS file for styling
+import '../styles/WeatherWidget.css';
 import { ReactComponent as MySVG } from '../assets/fintek_logo.svg';
 import {fetchWeatherData, fetchforecastData}  from '../api/weatherApi';
 import CityWeatherDetails from './CityWeatherDetails';
 
 const formatDateTime = (dateTimeString) => {
-  const date = new Date(dateTimeString.replace(' ', 'T')); // Convert to ISO format
-
-  const formattedDate = date.toLocaleDateString('en-GB'); // Format date as DD/MM/YYYY
-  const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format time as HH:MM
-
+  const date = new Date(dateTimeString.replace(' ', 'T'));
+  const formattedDate = date.toLocaleDateString('en-GB');
+  const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   return `${formattedDate.replace(/\//g, '/')} at ${formattedTime}`;
 };
 
@@ -25,23 +23,23 @@ const WeatherWidget = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');   
-
+    setError('');
     const data = await fetchWeatherData(city);
+
     if (data) {
       const forecastData = await fetchforecastData(city, data.location.localtime)
       setWeatherData(data);
       setforecastData(forecastData)
       setCity('')
     } else {
-      setWeatherData(null);
-      if(city){
-        setError(`Failed to find weather data for ${city}. Please try again.`); // Update error state
-      }
-      else {
-        setError('Please fill in the location')
-      }
-      setWeatherData(null); // Clear previous weather data if there's an error
+        setWeatherData(null);
+        setforecastData(null)
+        if(city){
+          setError(`Failed to find weather data for ${city}. Please try again.`);
+        }
+        else {
+          setError('Please enter the required location.')
+        }
     }
   };
 
@@ -66,6 +64,7 @@ const WeatherWidget = () => {
               value={city}
               onChange={handleCityChange}
               className="text-input"
+              maxLength={40}
             />
             <button type="submit" className="input-button">
               Check

@@ -1,44 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
 
 .weather-widget {
-  width: 800%; /* Occupies 80% of the page width */
-  max-width: 1100px; /* Maximum width to keep it manageable */
-  margin: 20px auto; /* Centered with margin on top and bottom */
-  background-color: #F1F1F1; /* Light background color */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  padding: 20px; /* Padding for internal spacing */
+  max-width: 80%; 
+  margin: 1.5% auto; 
+  background-color: #F1F1F1; 
+  padding: 1.3%; 
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
+  flex-direction: column;
   height: 530px;
 }
 
 .widget-logo {
-  width: 100px; /* Logo size */
-  height: auto; /* Maintain aspect ratio */
-  margin-bottom: 10px; /* Space below the logo */
+  width: 20%; 
+  height: auto; 
+  margin-bottom: 2%; 
 }
 
 .widget-description {
-  font-size: 25px; /* Description font size */
-  color: #666; /* Slightly darker color for contrast */
-  position: relative; /* Make the container relative */
-  width: 100%; /* Full width */
-  max-width: 400px; /* Maximum width for the container */
-  margin: 20px auto; /* Center the container */
+  font-size: 25px; 
+  color: #666; 
+  position: relative; 
+  max-width: 400px; 
+  margin: 3% auto; 
 }
 
 .widget-body {
-  font-family: 'Heebo', sans-serif; /* Apply Heebo font to the entire widget */
-  display: flex; /* Horizontal layout */
-  justify-content: space-between; /* Space between left and right panes */
-  align-items: flex-start; /* Align items to the top */
+  font-family: 'Heebo'; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start;
 }
 
 .left-pane {
-  flex: 1; /* Take up available space */
-  margin-right: 20px; /* Space between left and right panes */
-  
+  flex: 1;  
 }
 
 .left-center-pane{
@@ -46,87 +40,71 @@
 }
 
 .input-container {
-  position: relative; /* Make the container relative */
-  width: 100%; /* Full width */
-  max-width: 400px; /* Maximum width for the container */
-  margin: auto; /* Center the container */
+  position: relative;
+  width: 100%; 
+  max-width: 400px;
+  margin: auto;
 }
 
 .text-input {
-  width: 80%; /* Full width */
-  padding: 10px; /* Padding inside the input */
-  border: 0px solid #ccc; /* Border for the input */
-  border-radius: 5px; /* Round corners */
-  font-size: 20px; /* Font size for input text */
+  width: 80%; 
+  padding: 2%; 
+  border: 0px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 20px;
   height: 30px;
 }
 
 .input-label {
-  font-size: 10px; /* Smaller font size for label */
-  margin-bottom: 5px; /* Space between label and input */
-  display: block; /* Make the label a block element */
-  position: relative; /* Make the container relative */
-  width: 100%; /* Full width */
-  max-width: 400px; /* Maximum width for the container */
-  margin: 5px auto; /* Center the container */
+  font-size: 10px; 
+  margin-bottom: 5px; 
+  display: block; 
+  width: 100%;
+  max-width: 400px;
+  margin: 5px auto;
   color: #707070
 }
 
 .input-button {
-  position: absolute; /* Position the button absolutely */
-  right: 20%; /* Position from the right */
-  top: 50%; /* Center the button vertically */
-  transform: translateY(-50%); /* Adjust vertical alignment */
-  height: 32px; /* Set a specific height for the button */
+  position: absolute;
+  right: 20%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
   width: 20%;
-  background-color: #046B3B; /* Button color */
-  color: white; /* Text color */
-  border: none; /* Remove border */
-  border-radius: 10px; /* Round corners */
-  cursor: pointer; /* Change cursor on hover */
-  font-size: 14px; /* Font size for button text */
-  
-}
-
-.search-button:hover {
-  background-color: #005f99; /* Darker shade on hover */
+  background-color: #046B3B;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .latidude {
-  font-size: 10px; /* Smaller font size for label */
-  margin-bottom: 5px; /* Space between label and input */
-  display: block; /* Make the label a block element */
-  position: relative; /* Make the container relative */
-  width: 100%; /* Full width */
-  max-width: 400px; /* Maximum width for the container */
-  margin: 5px auto; /* Center the container */
+  font-size: 10px;
+  max-width: 400px;
+  margin: 5px auto;
   margin-top: 28%;
   color: #707070
 }
 
 .right-pane {
-  padding: 50px;
+  padding: 5%;
   background-color: #DDE4E6;
-  flex: 1; /* Take up available space */
+  flex: 1;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center; 
+  align-items: center; 
   margin-top: 1%;
-  border-radius: 10px; /* Round corners */
-   /* Full viewport height */
+  border-radius: 10px; 
 }
 
 .right-pane-empty {
-  padding: 50px;
-  flex: 1; /* Take up available space */
-  text-align: center; /* Align text to the left */
-  font-weight: bold; /* Bold text */
+  padding: 5%;
+  flex: 1; 
+  text-align: center; 
+  font-weight: bold;
   font-size: 20px;
-  margin-top: 200px;
+  margin-top: 18%;
 
-}
-
-.no-data-message {
-  color: red; /* Color for error message */
-  font-weight: bold; /* Bold text */
 }

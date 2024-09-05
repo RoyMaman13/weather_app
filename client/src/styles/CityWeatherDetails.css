@@ -4,57 +4,57 @@
     display:block;
     background-color:#27737D;
     text-align: center;
-    padding: 20px;
-    border-radius: 50px; /* Round corners */
+    padding: 4%;
+    border-radius: 10%;
     color: white;
-    width: 350px;
+    width: 75%;
   }
   
   .weather-details h2,
   .weather-details h3 {
-    margin: 5px 0;
+    margin: 1% 0%;
   }
   
   .temperature-condition {
-    margin: 20px 0;
+    margin: 5% 0%;
   }
   
   .temperature-condition h1 {
     font-size: 3em;
-    margin: 0;
+    margin: 0%;
   }
   
   .temperature-condition h2 {
     font-size: 1.5em;
-    margin: 10px 0 0 0;
+    margin: 3.5% 0 0 0;
   }
 
   .temp {
-    font-size: 1.5em; /* Increase font size */
-    line-height: 1; /* Increase line height for taller appearance */
-    font-weight: 300; /* Lighten the font */
-    text-align: center; /* Center align the text */
+    font-size: 1.5em; 
+    line-height: 1; 
+    font-weight: 300; 
+    text-align: center; 
   }
   
   .additional-info {
-    margin-top: 20px;
+    margin-top: 5%;
     display: flex;
-    justify-content: space-between; /* Align categories in one line */
+    justify-content: space-between; 
   }
   
   .info-row {
     display: flex;
     justify-content: space-between;
-    width: 100%; /* Ensures the row takes full width */
+    width: 100%;
   }
 
   .category {
-    text-align: center; /* Center align the text */
+    text-align: center; 
   }
   
   .value {
     margin-left: 10px;
-    display: block; /* Display value in a new line */
-    margin-top: 5px; /* Space between category and value */
+    display: block;
+    margin-top: 6%;
     font-weight:bold;
   }
