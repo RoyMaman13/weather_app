@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
 
 .weather-widget {
-  max-width: 80%; 
-  margin: 1.5% auto; 
-  background-color: #F1F1F1; 
-  padding: 1.3%; 
-  display: flex;
-  flex-direction: column;
-  height: 530px;
+  max-width: 80%;   
+  margin: 1.5% auto;   
+  padding: 1.3%;
 }
 
 .widget-logo {
