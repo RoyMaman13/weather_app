@@ -33,7 +33,7 @@ const CityWeatherDetails = ({ weatherData, formatDateTime, forecastData }) => {
     <div className="weather-details">
       <h2>{name}</h2>
       <h3 className='state-details'>{country}</h3>
-      <p>{roundToHour(localtime)}</p>
+      <p className='date-details'>{roundToHour(localtime)}</p>
       <div className="temperature-condition">
         <h1 className="temp">{roundTemp(temp_c)}°</h1>
         <h2>{condition.text}</h2>
