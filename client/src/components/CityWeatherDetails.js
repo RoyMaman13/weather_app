@@ -14,6 +14,12 @@ const roundToHour = (localtime) => {
   return `${hour}:00`;
 };
 
+const roundTemp = (temp) => {
+  const [roundedTemp] = temp.toString().split('.');
+  return roundedTemp;
+};
+
+
 const CityWeatherDetails = ({ weatherData, formatDateTime, forecastData }) => {
   if (!weatherData) {
     return <p>No weather data available</p>;
@@ -26,10 +32,10 @@ const CityWeatherDetails = ({ weatherData, formatDateTime, forecastData }) => {
   return (
     <div className="weather-details">
       <h2>{name}</h2>
-      <h3>{country}</h3>
+      <h3 className='state-details'>{country}</h3>
       <p>{roundToHour(localtime)}</p>
       <div className="temperature-condition">
-        <h1 className="temp">{temp_c}°C</h1>
+        <h1 className="temp">{roundTemp(temp_c)}°</h1>
         <h2>{condition.text}</h2>
       </div>
       
@@ -45,7 +51,7 @@ const CityWeatherDetails = ({ weatherData, formatDateTime, forecastData }) => {
     </div>
     <div className="category">
       <span>Wind:</span>
-      <span className="value">{wind_kph} kph</span>
+      <span className="value">{roundTemp(wind_kph)} km/h</span>
     </div>
   </div>
 </div>
@@ -54,7 +60,7 @@ const CityWeatherDetails = ({ weatherData, formatDateTime, forecastData }) => {
     {forecastData.slice(0, 5).map((hourData, index) => (
       <div className="category" key={index}>
         <span>{extractTime(hourData.time)}</span>
-        <span className="value">{hourData.temp_c}°</span>
+        <span className="value">{roundTemp(hourData.temp_c)}°</span>
       </div>
     ))}
   </div>

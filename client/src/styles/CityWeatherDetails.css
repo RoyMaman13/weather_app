@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap'); */
 
 .weather-details {
     display:block;
@@ -9,24 +9,26 @@
     color: white;
     width: 75%;
   }
-  
-  .weather-details h2,
-  .weather-details h3 {
-    margin: 1% 0%;
-  }
-  
-  .temperature-condition {
-    margin: 5% 0%;
-  }
-  
-  .temperature-condition h1 {
-    font-size: 3em;
+
+  .state-details{
+    font-weight: lighter;
     margin: 0%;
   }
   
+  .weather-details h2,
+  .weather-details h3 {
+    margin: 0%;
+  }
+  
+  .temperature-condition h1 {
+    font-size: 4.5em;
+    margin: 0%;
+    font-weight: bolder;
+  }
+  
   .temperature-condition h2 {
-    font-size: 1.5em;
-    margin: 3.5% 0 0 0;
+    font-size: 1.2em;
+    font-weight: lighter;
   }
 
   .temp {
@@ -49,12 +51,14 @@
   }
 
   .category {
-    text-align: center; 
+    text-align: center;
+    width: 80%; 
   }
   
   .value {
     margin-left: 10px;
     display: block;
-    margin-top: 6%;
-    font-weight:bold;
+    margin-top: 2%;
+    font-weight:bolder;
+    
   }
